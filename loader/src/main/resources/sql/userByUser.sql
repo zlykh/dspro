@@ -1,0 +1,1 @@
+select * from dbuser.dim_profile_tags

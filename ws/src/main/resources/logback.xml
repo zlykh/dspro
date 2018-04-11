@@ -1,0 +1,5 @@
+<configuration>
+    <property scope="context" name="CONTEXT_NAME" value="com.dspro.wsApp"/>
+    <!-- -Dlogger_level=trace-->
+    <include resource="logback-default.xml"/>
+</configuration>

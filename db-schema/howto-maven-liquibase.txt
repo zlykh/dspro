@@ -1,0 +1,2 @@
+clean install liquibase:rollback -Dliquibase.rollbackCount=1
+clean install liquibase:rollback -Dliquibase.rollTag=xxx

@@ -1,0 +1,1 @@
+select * from dbuser.contact_list

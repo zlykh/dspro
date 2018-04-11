@@ -1,0 +1,48 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:batch="http://www.springframework.org/schema/batch"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+       <!--http://www.springframework.org/schema/beans/spring-beans-3.2.xsd-->
+       <!--http://www.springframework.org/schema/batch-->
+       <!--http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">-->
+
+    <!--<bean id="reader" class="com.dspro.logic.SqlResourceReadereader">-->
+        <!--<property name="fetchSize" value="10000" />-->
+        <!--<property name="sqlFileName" value="sql/loadTags.sql" />-->
+        <!--<property name="rowMapper" ref="rowMapper" />-->
+        <!--<property name="dataSource">-->
+            <!--<ref parent="dataSource" />-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="rowMapper" class="com.dspro.logic.profile.ProfileBatchMapper" />-->
+    <!--<bean id="writer" class="com.dspro.logic.profile.CtnProfileWriterter">-->
+        <!--<property name="redisTemplate">-->
+            <!--<ref parent="stringRedisTemplate" />-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;<bean id="renameTasklet" class="com.dspro.logic.RenameTasklet" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="templateManager">&ndash;&gt;-->
+            <!--&lt;!&ndash;<ref parent="templateManager" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="source" value="_city" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="dest" value="city" />&ndash;&gt;-->
+    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+
+    <!--<batch:step id="chunkStep">-->
+        <!--<batch:tasklet>-->
+            <!--<batch:chunk reader="reader" writer="writer" commit-interval="10000" />-->
+        <!--</batch:tasklet>-->
+    <!--</batch:step>-->
+
+    <!--<batch:job id="loadTags">-->
+        <!--<batch:step id="load" parent="chunkStep" />-->
+        <!--&lt;!&ndash;<batch:step id="load" parent="chunkStep" next="rename" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<batch:step id="rename">&ndash;&gt;-->
+            <!--&lt;!&ndash;<batch:tasklet ref="renameTasklet" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</batch:step>&ndash;&gt;-->
+    <!--</batch:job>-->
+
+<!--</beans>-->

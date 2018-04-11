@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2018-02-16-add-categories-and-tags-table_tag" author="zlykhd">
+        <tagDatabase tag="2018-02-16-add-categories-and-tags-table_tag"/>
+    </changeSet>
+
+    <changeSet id="2018-02-16-add-categories-table" author="zlykhd">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CATEGORY"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CATEGORY">
+            <column name="CATEGORY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="CATEGORY_ID" constraintName="PK_CATEGORY_ID" tableName="CATEGORY"/>
+        <rollback>
+            <dropTable tableName="CATEGORY"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2018-02-16-add-tags-table" author="zlykhd">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="TAG"/>
+            </not>
+        </preConditions>
+        <createTable tableName="TAG">
+            <column name="TAG_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="TAG_ID" constraintName="PK_TAG_ID" tableName="TAG"/>
+        <rollback>
+            <dropTable tableName="TAG"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2018-02-16-add-tags-categories-link-table" author="zlykhd">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PROF_CAT_TAG_LNK"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PROF_CAT_TAG_LNK">
+            <column name="PROFILE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CATEGORY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_ID" type="BIGINT">
+                <!--if you want just get common w/o narrow interests-->
+                <!--<constraints nullable="false"/>-->
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="PROFILE_ID"
+                                 baseTableName="PROF_CAT_TAG_LNK"
+                                 constraintName="FK_PROFILE_ID_LNK"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="PROFILE_ID"
+                                 referencedTableName="PROFILE"/>
+
+        <addForeignKeyConstraint baseColumnNames="CATEGORY_ID"
+                                 baseTableName="PROF_CAT_TAG_LNK"
+                                 constraintName="FK_CATEGORY_ID_LNK"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="CATEGORY_ID"
+                                 referencedTableName="CATEGORY"/>
+
+        <addForeignKeyConstraint baseColumnNames="TAG_ID"
+                                 baseTableName="PROF_CAT_TAG_LNK"
+                                 constraintName="FK_TAG_ID_LNK"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="TAG_ID"
+                                 referencedTableName="TAG"/>
+
+        <rollback>
+            <dropTable tableName="PROF_CAT_TAG_LNK"/>
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,5 @@
+<configuration>
+    <property scope="context" name="app_name" value="loader"/>
+    <!-- -Dlogger_level=trace-->
+    <include resource="logback-default.xml"/>
+</configuration>

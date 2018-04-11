@@ -1,0 +1,6 @@
+<configuration>
+    <property scope="context" name="app_name" value="webservice"/>
+     <!-- -Dlogger_level=trace-->
+    <include resource="logback-default.xml"/>
+
+</configuration>

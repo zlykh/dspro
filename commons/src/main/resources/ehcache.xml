@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+         updateCheck="false" monitoring="off"
+
+         dynamicConfig="true">
+
+    <cache firstName="ProfileDao.find"
+           maxElementsInMemory="1000"
+           timeToIdleSeconds="60"
+           timeToLiveSeconds="120"
+           overflowToDisk="false"
+           diskPersistent="false"
+           memoryStoreEvictionPolicy="LRU"/>
+
+</ehcache>

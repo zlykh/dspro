@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2018-02-16-add-profiles-table_tag" author="zlykhd">
+        <tagDatabase tag="2018-02-16-add-profiles-table_tag"/>
+    </changeSet>
+
+    <changeSet id="2018-02-16-add-profiles-table" author="zlykhd">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PROFILE"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="PROFILE">
+            <column name="PROFILE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AGE" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="PROFILE_ID" constraintName="PK_PROFILE_ID" tableName="PROFILE"/>
+
+        <rollback>
+            <dropTable tableName="PROFILE"/>
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>
